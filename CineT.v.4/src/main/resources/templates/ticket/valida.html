@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<form th:action="@{/ticket/valida/}" method="post">
+					<div class="form-group row">
+						<label  class="col-sm-2 col-form-label"
+							th:text="'Ingrese Codigo del Ticket:'"></label>
+						<div class="col-sm-4">
+							<input name="codBarra" id="codBarra"	class="form-control" th:maxlength="15"/>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" th:value="'Validar'"
+								class="btn btn-secondary"  id="btnValidar"/>
+						</div>
+					</div>
+				</form>
+				<div th:if="${detalle != null}" style="font-size: 2em;" >
+					<div class="alert alert-success" th:if="${ok}">
+						<img class="img-responsive" style="max-width: 20%;"
+						th:src="@{'/images/ok.png'}" th:alt="''" />
+						<strong th:text="${detalle}"></strong>
+					</div>
+					<div class="alert alert-danger" th:if="!${ok}">
+						<img class="img-responsive" style="max-width: 30%;"
+						th:src="@{'/images/fail.png'}" th:alt="''" />
+						<strong th:text="${detalle}"></strong>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript">
+	$("#codBarra").on("keyup", function() {
+	    var numKey = document.getElementById('codBarra').value;
+	    if(numKey.length == 13){
+	    	$("#btnValidar").click();
+	    }
+	});
+
+	function setFocusToTextBox(){
+	    $("#mytext").focus();
+	}
+	
+	$(document).click(function(){
+	    document.getElementById("codBarra").focus();
+	    //$(document).unbind("click");
+	});
+	  
+
+	window.onload = function() {
+		document.getElementById("codBarra").focus();
+	};
+	</script>
+</body>
+</html>

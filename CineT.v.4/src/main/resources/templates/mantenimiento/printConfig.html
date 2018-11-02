@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+					<h3 class="card-title">
+						<a th:href="@{/}" class="btn btn-xs">volver</a>
+					</h3>
+				<form th:action="@{/mantenimiento/formConfPrint}" th:object="${printConfig}" method="post">
+				
+					<div class="form-group row">
+						<label for="pathExePrint" class="col-sm-2 col-form-label">Ruta de Ejecutable Print .exe:</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{pathExePrint}" 
+								class="form-control" 
+								th:errorclass="'form-control alert-danger'"
+								placeholder="Ruta de Ejecutable Print.exe "
+								id="pathExePrint"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('pathExePrint')}"
+									th:errors="*{pathExePrint}"
+							></small>
+						</div>	
+					</div>
+					
+					<div class="form-group row">
+						<label for="pathPrintBarcode" class="col-sm-2 col-form-label">Ruta donde creara Codigo de Barra (Temporal):</label>
+						<div class="col-sm-6">
+							<input type="text" 
+									th:field="*{pathPrintBarcode}" 
+									class="form-control" 
+									th:errorclass="'form-control alert-danger'"
+									id="pathPrintBarcode"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('pathPrintBarcode')}"
+									th:errors="*{pathPrintBarcode}"
+							></small>
+						</div>	
+					</div>
+					<div class="form-group row">
+						<label for="pathPrintBarcode" class="col-sm-2 col-form-label">NOMBRE IMPRESORA</label>
+						<div class="col-sm-6">
+							<input type="text" 
+									th:field="*{namePrint}"
+									class="form-control" 
+									th:errorclass="'form-control alert-danger'"
+									id="namePrint"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('namePrint')}"
+									th:errors="*{namePrint}"
+							></small>
+						</div>	
+					</div>				
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" th:value="'Guardar Configuración'" class="btn btn-danger" />
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>	
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+</body>
+</html>

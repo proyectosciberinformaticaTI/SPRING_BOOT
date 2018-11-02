@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<script type="text/javascript"> 
+		function display_c(){
+			var refresh=1000; // Refresh rate in milli seconds
+			mytime=setTimeout('display_ct()',refresh)
+		};
+	
+		function display_ct() {
+			var x = new Date()
+			document.getElementById('ct').innerHTML = x;
+			display_c();
+		};
+		
+		setTimeout(function(){
+			    location = ''
+			  },5000);
+		
+</script>
+<body onload=display_ct();>
+	<div class="container" style="background-color:#00001a;">
+		<div class="row" style="color: #ff0000;">			
+			<div class="col-2" style="vertical-align: baseline;">
+				<strong>Tickets Vendidos:</strong>
+			</div>
+			<div class="col" style="line-height: 0.9em; text-align: center; font-size: 25vw;">
+				<strong th:text="${totalV}"></strong>
+			</div>
+		</div>
+		<div class="row" style="border: solid;color:#00ff00;">
+			<div class="col-2" style="vertical-align: baseline;">
+				<strong >Tickets Registrados:</strong>
+			</div>
+			<div class="col" style="line-height: 0.9em; text-align: center; font-size: 25vw; ">
+				<strong th:text="${totalU}"></strong>
+			</div>
+		</div>		
+	</div>
+	<div id="clock" class="clock"><span id='ct' ></span></div>
+	<footer th:replace="layout/layout :: footer"></footer>	
+</body>
+</html>

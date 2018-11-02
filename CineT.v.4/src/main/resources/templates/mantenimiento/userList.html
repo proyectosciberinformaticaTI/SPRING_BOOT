@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{/mantenimiento/formUsuario}" class="btn btn-primary btn-xs">Crear Usuario</a>
+				</h4>
+				<table class="table table-striped table-bordered" id="tabUsuarios">
+					<thead>
+						<tr>
+							<th>usuario</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<th>Roles</th>
+							<th>Estado</th>
+							<th>Editar</th>
+							<th>Accesos</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usuario: ${lisUsuario}">
+							<td th:text="${usuario.username}"></td>			
+							<td th:text="${usuario.nombres}"></td>
+							<td th:text="${usuario.apellidos}"></td>				
+							<td th:text="${usuario.muestraRoles()}"></td>
+							<td th:text="${usuario.estado()}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/mantenimiento/formUsuario/} + ${usuario.id}" th:text="'Editar'"></a></td>
+							<td><a class="btn btn-success btn-xs"
+								th:href="@{/mantenimiento/permisosUsuario/} + ${usuario.id}" th:text="'Accesos'"></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/mantenimiento/disabledUser/} + ${usuario.id}" th:text="'Eliminar'"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" >
+		$(document).ready(function() {
+			$('#tabUsuarios').DataTable();
+		} );
+	</script>
+</body>
+</html>

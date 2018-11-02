@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+		
+	<div class="container py-4">		
+		<div class="card bg-light ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<div th:object="${tarifa}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+						role="alert">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+					<h3 class="card-title">
+						<a th:href="@{/mantenimiento/tarifas}" class="btn btn-xs">volver</a>
+					</h3>
+				<form th:action="@{/mantenimiento/formTarifa}" th:object="${tarifa}" method="post">
+				
+					<div class="form-group row">
+						<label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{categoria}" 
+								class="form-control" 
+								th:errorclass="'form-control alert-danger'"
+								placeholder="Categoria "
+								id="categoria"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('categoria')}"
+									th:errors="*{categoria}"
+							></small>
+						</div>	
+					</div>
+					
+					<div class="form-group row">
+						<label for="precio" class="col-sm-2 col-form-label">Precio</label>
+						<div class="col-sm-6">
+							<input type="text" 
+									th:field="*{precio}" 
+									class="form-control" 
+									th:errorclass="'form-control alert-danger'"
+									id="precio"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('precio')}"
+									th:errors="*{precio}"
+							></small>
+						</div>	
+					</div>
+					
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" th:value="'Grabar'" class="btn btn-secondary" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>	
+</body>
+</html>

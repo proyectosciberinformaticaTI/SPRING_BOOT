@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header   th:replace="layout/layout :: header"></header>	
+	
+	<div class="container">
+		<div class="row justify-content-center">
+				<div class="col-3" id="divMenu">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<td>#</td>
+								<td>Acción</td>
+							</tr>
+						</thead>
+						<tbody style="font-weight: bold; font-size: 1.2em;">
+							<tr>
+								<td>1</td>
+								<td>Inicio</td>
+							</tr>
+							<tr class="bg-success" style="color: white;">
+								<td>2</td>
+								<td>Generar Ticket</td>
+							</tr>
+							<tr class="bg-warning">
+								<td>3</td>
+								<td>Cancelar Ticket</td>
+							</tr>
+							<tr class="bg-info" style="color: white;">
+								<td>4</td>
+								<td>Corte</td>
+							</tr>
+							<tr class="bg-danger" style="color: white;">
+								<td>5</td>
+								<td>Cerrar Sección</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col" id="divInicio">
+					<div class="row">
+							<div class="col">											
+								<span class="list-group-item list-group-item-warning"
+									th:text="'Cajero: ' + ${reporte.usuario.nombres} + ' ' + ${reporte.usuario.apellidos}"></span>								
+							</div>
+							<div class="col">											
+								<strong class="list-group-item list-group-item-info"
+									th:text="'Entrada: ' + ${tarifa.categoria} + ' | Precio:' + ' S/ ' +${tarifa.precio}"></strong>								
+							</div>
+					</div>
+					<div class="row">
+						<div class="col" style="background-color:#00001a;color: #ff0000;">
+							<span>Ticket Vendidos:</span>
+							<span th:text="${reporte.totalValidos}" style="font-weight: bold; font-size: 21em;line-height: 0.8em; " > </span>	
+<!-- 							<span style="font-weight: bold; font-size: 21em;line-height: 0.8em;"> 999</span>	 -->
+						</div>						
+					</div>
+				</div>
+				<div class="col" id="divCancel" style="display: none;">
+					<table class="table table-striped table-bordered" id="tabTickets">
+						<thead>
+							<tr>
+								<th>Ticket</th>
+								<th>Fecha</th>
+								<th>Estado</th>								
+								<th>Cancelar</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ticket: ${lisTicket}">
+								<td th:text="${ticket.codigoBarra}"></td>
+								<td th:text="${ticket.getDia()} + ' ' + ${ticket.getHora()}"></td>
+								<td th:text="${ticket.getEstadoText()}"></td>								
+								<td>
+									<a  th:if="${ticket.canCalcel()}"  class="btn btn-danger col-md-12"
+									style="height:70px;font-size: 2em;"
+									th:href="@{'/ticket/cancela/' + ${ticket.codigoBarra}}"
+									th:text="'Cancela Ticket'"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<a class="btn btn-secondary  btn-lg btn-block" style="height:200px;font-size: 8em; vertical-align: middle;"
+							th:href="@{'/ticket/inicio'}"
+							th:text="'1'"											
+				></a>					
+			</div>
+			<div class="col" id="divPrinting">
+				<a class="btn btn-success  btn-lg btn-block" style="height:200px;font-size: 8em; vertical-align: middle;"
+							th:href="@{'/ticket/genera'}"
+							th:text="'2'"
+							th:onclick="'javascript:printing();'"
+				></a>
+			</div>
+			<div class="col" style="display: none;" id="divWait">
+				<img class="img-responsive" style="max-width: 100%;"
+					th:src="@{'/images/wait.gif'}" th:alt="''" />
+			</div>
+			<div class="col">
+				<a href="#" class="btn btn-warning  btn-lg btn-block"  style="height:200px;font-size: 8em; vertical-align: middle;"
+						onclick="muestraDiv('divCancel','divInicio');">3</a>
+			</div>
+			<div class="col">
+				<a class="btn btn-info  btn-lg btn-block" style="height:200px;font-size: 8em; vertical-align: middle;"
+							th:href="@{'/ticket/reporteParcial'}"
+							th:text="'4'"											
+				></a>
+			</div>
+			<div class="col">
+				<form id="logoutForm" th:action="@{/logout}" method="post">
+									<button class="btn btn-danger  btn-lg btn-block" style="height:200px;font-size: 8em; vertical-align: middle;"
+											onclick="document.getElementById('logoutForm').submit();" 
+											type="submit">5</button>
+				</form>			
+			</div>
+		</div>
+	</div>	
+		
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" th:fragment="javascript">
+	
+		function muestraDiv(divMostrar, divOcultar){	
+			document.getElementById(divMostrar).style.display  = "block";
+			  document.getElementById(divOcultar).style.display  = "none";
+		}
+		
+		function printing(){	
+			document.getElementById('divWait').style.display  = "block";
+			  document.getElementById('divPrinting').style.display  = "none";
+		}
+		
+		
+	</script>
+	
+</body>
+</html>

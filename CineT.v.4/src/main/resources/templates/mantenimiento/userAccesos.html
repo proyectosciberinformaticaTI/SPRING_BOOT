@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	
+	
+	<div class="container py-4">		
+		<div class="card bg-light ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h3 class="card-title">
+						<a th:href="@{/mantenimiento/usuarios}" class="btn btn-secondary btn-xs">volver</a>
+				</h3>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label" th:text="'Usuario'"></label>
+					<div class="col-sm-6">
+							<label th:text="${usuario.nombres} +' ' + ${usuario.apellidos}"></label>
+					</div>
+				</div>
+				<div class="form-group row">
+						<label for="file" class="col-sm-2 col-form-label">Permisos:</label>
+						<div class="col-sm-4">
+							<table >
+								<tr th:each="role: ${usuario.roles}">
+									<td th:text="${role.authority}"></td>
+									<td>
+										<a class="btn btn-danger btn-xs"
+											th:href="@{/mantenimiento/eliminaRol}+'/'+ ${usuario.id}  +'/'+ ${role.id}" th:text="'x'"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<form th:action="@{/mantenimiento/usuarioAddRol}" method="post">
+							<input  th:value="${usuario.id}" name="idUsuario" type="hidden" />
+							<input name="rolSelect" id="rolSelect" type="hidden" />
+							<div class="col-sm-12">
+								<select class="custom-select" id="inputSelectRole" name="inputSelectRole">
+									<option selected>  </option>
+									<option value="ROLE_CAJERO">CAJERO</option>
+							    	<option value="ROLE_CONTROL">CONTROL</option>
+							    	<option value="ROLE_SUPERVISOR">SUPERVISOR</option>
+							    	<option value="ROLE_ADMIN">ADMIN</option>
+							  	</select>
+							</div>
+							<div class="col-sm-2">
+						    		<input type="submit" th:value="'Agregar Permiso'" class="btn btn-info" />
+						  	</div>
+						</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" th:fragment="javascript">
+	
+		$("#inputSelectRole").change(function(){
+			var op = $("#inputSelectRole option:selected").val();
+			$('#rolSelect').val(op);
+		});
+		
+		$("#btnAddRole").click(function(){
+			var combo = document.getElementById("inputSelectRole");
+			var id = $("#inputSelectRole").val();			
+			var val = " value=" + '"' + $("#inputSelectRole").val() + '"';
+			var name = " name=" + '"' + "rol_id[]" + '"';
+			var idRol =  "id=" + '"' + "rol_" + $("#inputSelectRole").val() + '"';
+			var borrar = "<a href="+ '"' + "#" + '"' + "class=" + '"' + "btn btn-danger btn-xs"+ '"' + "onclick=" + '"' + "eliminarRol("+id+");"+ '"' + ">x</a>";
+			$("#userRoles").append("<li"+ val + " " + name + idRol + ">" + combo.options[combo.selectedIndex].text + " " + borrar + "</li>");
+			$("#inputSelectRole").val("").focus();
+			
+		});
+		
+		eliminarRol = function(id){
+			$("#rol_" + id).remove();
+		};
+		
+	</script>
+</body>
+</html>

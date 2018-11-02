@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>	
+	<div class="container py-4">
+		<h1 th:text="'Generar Ticket'"></h1>
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}">				
+			</div>
+			<div class="card-body">
+				<h4>
+					<a class="btn btn-primary btn-xs"
+						th:href="@{'/ticket/genera/'}"
+						th:text="'Genera Ticket WEB'"											
+						></a>
+				</h4>
+				<div class="row-sm-8">
+					<form th:action="@{/ticket/inicioUser}" method="post">
+						<input name="userSelect" id="userSelect" type="hidden" />
+						<div class="card bg-light">
+							<select class="custom-select" id="inputSelectUser" name="inputSelectUser">
+							<option selected> Seleccione Cajero </option>
+							<option th:each ="cajero : ${lisCajeros}" th:value="${cajero.id}" th:text="${cajero.nombres} +' ' + ${cajero.apellidos}" ></option>
+							</select>
+						</div>
+												
+						<div class="col-sm-2" id="divCajero" style="display: none;">
+						    <input type="submit" th:value="'Mostrar Tickets'" class="btn btn-warning" />
+						</div>
+					</form>
+				</div>
+				
+				<div class="row-sm-8">
+					<h4>
+						<a class="btn btn-primary btn-xs"
+							th:href="@{'/ticket/reporteParcial/'}"
+							th:text="'Genera Corte Parcial'"											
+						></a>
+					</h4>
+				</div>
+				<div id="Tabla" class="col" > 				
+					<table class="table table-striped table-bordered" id="tabTickets">
+						<thead>
+							<tr>
+								<th>Ticket</th>
+								<th>Dia</th>
+								<th>Hora</th>
+								<th>Estado</th>								
+								<th>Cancelar</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ticket: ${lisTicket}">
+								<td th:text="${ticket.codigoBarra}"></td>
+								<td th:text="${ticket.getDia()}"></td>
+								<td th:text="${ticket.getHora()}"></td>
+								<td th:text="${ticket.getEstadoText()}"></td>								
+								<td>
+									<a  th:if="${ticket.canCalcel()}"  class="btn btn-danger btn-xs"
+									th:href="@{'/ticket/cancela/' + ${ticket.codigoBarra}}"
+									th:text="'Cancela Ticket'"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>				
+				</div>
+						
+					
+			</div>
+			
+						
+<!-- 						style="display: none;" -->
+			
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" th:fragment="javascript">
+		$(document).ready(function() {
+			$('#tabTickets').DataTable();
+		} );
+	
+		$("#inputSelectUser").change(function(){
+			var op = $("#inputSelectUser option:selected").val();
+			$('#userSelect').val(op);
+			 document.getElementById("divCajero").style.display  = "block";
+		});
+		
+	</script>
+	
+</body>
+</html>

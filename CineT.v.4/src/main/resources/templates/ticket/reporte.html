@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+		<script type="text/javascript" th:fragment="javascript">	
+			$(document).ready(function() {
+				$('#tabReporteT').DataTable();
+			} );
+			function imprSelecDivT(divPrint) {
+				var ficha = document.getElementById(divPrint);
+				var ventimp = window.open(' ', 'popimpr');
+				ventimp.document.write(ficha.innerHTML);
+				ventimp.document.close();
+				ventimp.print();
+				ventimp.close();
+			};
+			
+		</script>
+	<div class="container py-4">		
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">				
+				<div class="col-md-2 offset-md-8">
+					<a class="btn btn-warning  btn-lg btn-block" 
+						style="height:40px;font-size: 1em; vertical-align: middle; font-weight: bold;"
+						href="javascript:imprSelecDivT('divReporte')"
+					>Imprir</a>
+				</div>
+				<div id="divReporte">
+					<table  id="tabReporteT" class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Año</th>
+								<th>Mes</th>
+								<th>Dia</th>
+								<th>Total Tickets</th>
+								<th>Total Ingresos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="reporte: ${lisReporte}">
+								<td th:text="${reporte.ano}"></td>
+								<td th:text="${reporte.mes}"></td>
+								<td th:text="${reporte.dia}"></td>							
+								<td th:text="${reporte.totalTikets}"></td>
+								<td th:text="${reporte.totalIngresos}"></td>
+							</tr>
+						</tbody>
+					</table>				
+				</div>							
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+	<meta charset="UTF-8" />
+	<title th:text="'Ritz'"></title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/datatables.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/open-iconic-bootstrap.css}" />
+</head>
+
+
+
+
+<body>
+
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<img class="img-responsive" style="max-width: 8%;"
+					th:src="@{'/images/logoRitz.jpg'}" th:alt="''" />
+			<a class="navbar-brand" href="#"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a class="nav-link" href="#about"
+						th:href="@{/ticket/inicio}" sec:authorize="hasRole('ROLE_CAJERO')">Generar Ticket</a></li>
+					<li class="nav-item dropdown"><a class="nav-link" href="#about"
+						th:href="@{/ticket/form}" sec:authorize="hasRole('ROLE_CONTROL')">Control Ticket</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#about" 
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+							sec:authorize="hasRole('ROLE_SUPERVISOR')" >Reportes</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/ticket/reporte}" >Reporte Venta</a>
+							 <a class="dropdown-item" th:href="@{/mantenimiento/usuariosConectados}">Usuarios en Linea</a>
+						</div>
+					
+					</li>
+						
+					<li class="nav-item">
+						<a class="nav-link" href="#about"
+						th:href="@{/contador}" sec:authorize="hasRole('ROLE_SUPERVISOR')">Contador</a></li>
+					<li class="nav-item dropdown" >
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#about"  sec:authorize="hasRole('ROLE_ADMIN')">Mantenimiento</a>	
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							 <a class="dropdown-item" th:href="@{/mantenimiento/usuarios}">Mantenimiento Usuarios</a>
+		          			 <a class="dropdown-item" th:href="@{/mantenimiento/tarifas}">Mantenimiento Tarifas</a>
+		          			 <a class="dropdown-item" th:href="@{/mantenimiento/formConfPrint}">Configuración Impresora</a>
+						</div>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right col-xs-12 ">
+					<li sec:authorize="!isAuthenticated()">
+<!-- 						<a class="btn btn-outline-primary" th:href="@{/login}"> -->
+<!-- 						 <span class="oi oi-person"></span>  Sing In -->
+<!-- 						</a> -->
+						<a class="btn btn-outline-primary" th:href="@{/iniciaSession}">
+						 	<span class="oi oi-person"></span>  Inicio Sessión
+						</a>											
+					</li>
+					<li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+						<a class="nav-item" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+							 <strong sec:authentication="name"></strong>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<div>
+								<form id="logoutForm" th:action="@{/logout}" method="post">
+									<button class="btn btn-danger btn-block" 
+											onclick="document.getElementById('logoutForm').submit();" 
+											type="submit">Sign Out</button>
+								</form>
+							</div>
+						</div>
+					</li>
+						
+				</ul>
+
+			</div>
+		</nav>
+
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}"></div>
+	</header>
+
+	<div class="container"></div>
+
+	<footer th:fragment="footer" class="container">
+
+		<p>
+			Powered by <a href="http://www.sde.pe/"  target=”_blank”>SDE SAC</a>.
+		</p>
+		<p>
+			Este proyecto fue desarrollado por Support and Development Enterprise sac &copy; Company 2018.
+			<br> Todos los derechos reservados.<br />
+		</p>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Bootstrap JS -->
+		<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+		<script th:src="@{/js/dataTables.min.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
+		<script th:src="@{/js/bootstrap.js}"></script>
+		<script th:src="@{/js/jqprint.js}"></script>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>		
+	<div class="container py-4" style="width: 450px; height: 300px;" id="divTicket">		
+		<div >
+			<div>
+				<div><strong th:text="${ticket.getTarifa().getLocal().getNombre()}"></strong></div>
+				<div><span th:text=${ticket.getTarifa().getLocal().getRasonSocial()}></span></div>
+				<div><span th:text="${ticket.getTarifa().getLocal().getDireccionEmpresa()} + ' RUC:'+${ticket.getTarifa().getLocal().getRuc()}"></span></div>
+				<div><span th:text="${ticket.getTarifa().getLocal().getDireccionLocal()}"></span></div>
+				<div><span th:text="${ticket.getTarifa().getLocal().getDistrito()}"></span></div>
+				<div><span th:text="'Fecha:' + ${ticket.getDia()}"></span></div>
+				<div><span th:text="'Hora :' + ${ticket.getHora()}"></span></div>
+				<div><span th:text="'Boleta de Ingreso'"></span></div>
+				<div><span> <img class="img-responsive" style="max-width: 100%;" th:src="'data:image/png;charset=utf-8;base64,' + ${byteArrayCodBarra}" th:alt="''" /></span></div>
+				<div>
+				
+					<table  style="border-style: solid; width: 80%;">
+						<tr>					
+							<td th:text="Descripción"></td>
+							<td th:text="Cantidad"></td>
+							<td th:text="Importe"></td>
+						</tr>
+						<tr>
+							<td th:text="Boleto"></td>
+							<td th:text="1"></td>
+							<td th:text="${ticket.getTarifa().getPrecio().toString()}"></td>
+						</tr>
+						<tr>
+							<td th:text="Total"></td>
+							<td th:text="''"></td>
+							<td th:text="${ticket.getTarifa().getPrecio().toString()}"></td>
+						</tr>
+					</table>
+				</div>				
+				<div><span th:text="'Reclamar su comprobante de pago al salir del Establecimiento. Gracias por su preferencia.'"></span></div>			
+			</div>
+						
+		</div>
+	</div>
+</body>
+</html>

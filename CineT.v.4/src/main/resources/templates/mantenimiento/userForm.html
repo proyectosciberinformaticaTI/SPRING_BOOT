@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	
+	
+	<div class="container py-4">		
+		<div class="card bg-light ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<div th:object="${usuario}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+						role="alert">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+					<h3 class="card-title">
+						<a th:href="@{/mantenimiento/usuarios}" class="btn btn-xs">volver</a>
+					</h3>
+				<form th:action="@{/mantenimiento/formUsuario}" th:object="${usuario}" method="post">
+				
+					<div class="form-group row">
+						<label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{nombres}" 
+								class="form-control" 
+								th:errorclass="'form-control alert-danger'"
+								placeholder="Nombres "
+								id="nombres"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('nombres')}"
+									th:errors="*{nombres}"
+							></small>
+						</div>	
+					</div>
+					
+					<div class="form-group row">
+						<label for="apellidos" class="col-sm-2 col-form-label">Apellidos</label>
+						<div class="col-sm-6">
+							<input type="text" 
+									th:field="*{apellidos}" 
+									class="form-control" 
+									th:errorclass="'form-control alert-danger'"
+									id="apellidos"
+							/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('apellidos')}"
+									th:errors="*{apellidos}"
+							></small>
+						</div>	
+					</div>
+					
+					<div class="form-group row">
+						<label for="correo" class="col-sm-2 col-form-label">Correo</label>
+						<div class="col-sm-6">
+							<input type="email" th:field="*{correo}" 
+								   class="form-control" 
+								   th:errorclass="'form-control alert-danger'"
+								   onchange="generaUsuario();"
+								   id="correoUser"
+								   />
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('correo')}"
+									th:errors="*{correo}"
+							></small>
+						</div>	
+					</div>
+					
+					<div class="form-group row">
+						<label for="username" class="col-sm-2 col-form-label">Nombre de Usuario</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control"
+								th:field="*{username}"  
+								th:errorclass="'form-control alert-danger'"
+								id="username"
+								readonly/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}"
+							></small>
+						</div>	
+					</div>
+				
+					<div class="form-group row">
+						<label for="password" class="col-sm-2 col-form-label">Password</label>
+						<div class="col-sm-6">
+							<input type="password" th:field="*{password}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+							<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}"
+							></small>
+						</div>	
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" th:value="'Grabar'" class="btn btn-secondary" />
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" th:fragment="javascript">
+		generaUsuario = function(){
+			var usuario = $("#username").val();
+			if(usuario.length == 0){
+				var nombre = $("#nombres").val();
+				var apellidos = $("#apellidos").val();
+				user = nombre.substring(0, 2) + apellidos.split(" ")[0];
+				$("#username").val(user);
+			}
+		};
+	</script>
+</body>
+</html>
