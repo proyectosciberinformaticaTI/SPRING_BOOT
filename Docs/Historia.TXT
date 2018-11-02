@@ -1,0 +1,21 @@
+﻿- WWW - Internet - 199
+- CGI - Páginas Dinámicas - 1996
+- LLamadas asincronas - 1997
+- Servlet - 1997
+- JSP - 1997
+- JSP
+- JSTL - 1998
+- Struts - 2001
+- PHP
+- JSF - 
+- JSP .NET
+- J2EE Development without EJB - 
+- Spring Framework - 2004
+- Patrón DI - 
+- AJAX - 2005
+- JSON
+- JQuery
+- Angular JS
+- Angular2
+- Spring Boot - 
+- SPA - 
