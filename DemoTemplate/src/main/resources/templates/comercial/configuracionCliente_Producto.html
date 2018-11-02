@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+	lang="en">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+ <head th:replace="layout/layout :: head"></head>
+
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+  <body id="page-top">
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div id="wrapper">	    
+	      <!-- Sidebar -->
+	    <ul th:replace="layout/layout :: menuLateral"></ul>
+	    
+    	<div id="content-wrapper">
+	        <div class="container-fluid">
+  				<!-- DataTables Example -->
+	        	<div class="card mb-3">
+		            <div class="card-header">
+		              <i class="fas fa-table"></i>
+		             Configuración Cliente-Producto</div>
+		            <div class="card-body">
+		              
+		              <div class="row">
+		              
+		              <div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+
+								<label>Cliente </label> <select class="form-control">
+									<option>BACKUS-ATE</option>
+									<option></option>
+									<option></option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+
+								<label>Planta </label> 
+								
+								
+								<input  type="text" class="form-control	"  />
+								
+							</div>
+						</div>
+		              
+		              
+		              </div>
+		              
+		              
+		              
+		              
+		              
+		              
+		              
+		              
+		              
+		              
+		              
+<div class="container">		              
+<div class="row">
+
+<div class="col-sm-6">
+<table class="table table-bordered">
+
+
+
+
+
+	<tr>
+							
+								<td colspan="2" align="center">Cliente - Producto     </td>
+													
+							<tr>
+							
+								<td>Cliente      </td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							<tr>
+								<td>Planta        </td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							
+							
+							<tr>
+								<td>Marca        </td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td>ml        </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+					
+				
+				
+				<tr>
+								<td>Descripcion        </td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+				
+				
+							
+						
+					
+						</table>
+	</br>
+	
+	 <table class="table table-bordered">
+							<tr>
+								<td>Retorna Caja      </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+					
+							
+						
+				
+				<tr>
+								<td>Fecha de despacho       </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+				
+				
+							
+						
+					
+						</table>   
+	
+	</div>	              
+		              
+		              </br></br></br></br>
+		              
+		                </br></br></br></br>
+		              
+		              <div  class="col-sm-8">
+		              
+		          
+		              
+		              </div>
+						
+						
+						
+						
+						    
+		
+		
+		
+		</br></br>
+			<div  class="col-sm-6">
+	
+		
+		        <table class="table table-bordered">
+							<tr>
+								<td>Responsable     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+					
+							
+						
+			
+				
+				
+							
+						
+					
+						</table>     
+		
+		
+			</div>
+		
+		
+		<div class="col-sm-5" style="bottom: 550px;right:20px;">
+		      
+		      
+		  
+		        <table class="table table-bordered">
+		        
+		        
+		        
+		        <tr>
+								<td align="center" colspan="2">SKU     </td>
+								
+								
+															</tr>
+							<tr>
+								<td>Gr     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+					
+					
+							<tr>
+								<td>Tipo     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+							
+							
+							
+						
+								<tr>
+								<td>Color     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+					
+					
+									<tr>
+								<td>%Rcd     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+						
+					<tr>
+								<td>CP     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+				
+				
+				
+				
+						<tr>
+								<td>Caja     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+				
+							
+							
+									<tr>
+								<td>Resina     </td>
+								<td><select class="form-control"><option></option></select></td>
+							</tr>
+						
+					
+						</table>  
+						</div>
+		    
+					
+							  <div class="col-md-3" style="text-align:center;left: 450px;bottom: 550px">
+    
+		      <button class="btn btn-lg btn-primary btn-lg btn-block">VOLVER</button>
+		      </br>
+    <button id="button1id" name="button1id" class="btn btn-success btn-lg btn-block" style="display:block; margin-bottom:5px">GUARDAR</button>
+
+    <button id="button2id" name="button2id" class="btn btn-danger btn-lg btn-block" style="display:block; margin-bottom:5px">CANCELAR</button>
+        </div>   
+		
+		
+		</div>
+		
+
+
+		<label style="background-color: yellow">Fecha de Despacho, es un indicador para que el sistema alerte si no se ingreso la fecha si corresponde</label>
+	
+		
+		
+		
+		
+		
+		
+		            </div>
+		            <div class="card-footer small text-muted"></div>
+		          </div>
+	        </div>
+	        <!-- /.container-fluid -->
+	      </div>
+	      <!-- /.content-wrapper -->
+	    </div>
+	    <!-- /#wrapper -->
+    <footer th:replace="layout/layout :: footer"></footer>
+  </body>
+
+</html>

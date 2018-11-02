@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head th:replace="layout/layout :: head">
+
+
+</head>
+
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+
+.btn3d {
+	transition: all .08s linear;
+	position: relative;
+	outline: medium none;
+	-moz-outline-style: none;
+	border: 0px;
+	margin-right: 10px;
+	margin-top: 15px;
+}
+
+.btn3d:focus {
+	outline: medium none;
+	-moz-outline-style: none;
+}
+
+.btn3d:active {
+	top: 9px;
+}
+
+.btn-default {
+	box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255, 255, 255, 0.15)
+		inset, 0 8px 0 0 #adadad, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px
+		1px rgba(0, 0, 0, 0.5);
+	background-color: #fff;
+}
+
+.btn-primary {
+	box-shadow: 0 0 0 1px #428bca inset, 0 0 0 2px rgba(255, 255, 255, 0.15)
+		inset, 0 8px 0 0 #357ebd, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px
+		1px rgba(0, 0, 0, 0.5);
+	background-color: #428bca;
+}
+
+.btn-success {
+	box-shadow: 0 0 0 1px #5cb85c inset, 0 0 0 2px rgba(255, 255, 255, 0.15)
+		inset, 0 8px 0 0 #4cae4c, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px
+		1px rgba(0, 0, 0, 0.5);
+	background-color: #5cb85c;
+}
+
+.btn-info {
+	box-shadow: 0 0 0 1px #5bc0de inset, 0 0 0 2px rgba(255, 255, 255, 0.15)
+		inset, 0 8px 0 0 #46b8da, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px
+		1px rgba(0, 0, 0, 0.5);
+	background-color: #5bc0de;
+}
+
+.btn-warning {
+	box-shadow: 0 0 0 1px #f0ad4e inset, 0 0 0 2px rgba(255, 255, 255, 0.15)
+		inset, 0 8px 0 0 #eea236, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px
+		1px rgba(0, 0, 0, 0.5);
+	background-color: #f0ad4e;
+}
+
+.btn-danger {
+	box-shadow: 0 0 0 1px #c63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15)
+		inset, 0 8px 0 0 #C24032, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px
+		1px rgba(0, 0, 0, 0.5);
+	background-color: #c63702;
+}
+
+.btn-label {
+	position: relative;
+	left: -15px;
+	display: inline-block;
+	padding: 6px 12px;
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 3px 0 0 3px;
+}
+
+.btn-labeled {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.btn {
+	margin-bottom: 10px;
+}
+</style>
+
+<body id="page-top">
+	<header th:replace="layout/layout :: header"></header>
+
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<ul th:replace="layout/layout :: menuLateral"></ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<!-- DataTables Example -->
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-table"></i> Configuración Cliente - Producto
+					</div>
+					<div class="card-body">
+						<!-- 						Cliente - BACKUS &nbsp;  &nbsp; &nbsp;  &nbsp;   &nbsp; &nbsp; &nbsp; &nbsp;    &nbsp; &nbsp;  &nbsp;   &nbsp;   &nbsp;  &nbsp; Planta - ATE &nbsp; &nbsp; &nbsp;</br></br> -->
+
+						</br>
+						</br>
+						</br>
+
+
+						<div class="container">
+							<div class="row">
+
+
+
+
+
+
+
+
+
+
+								<div class="col-sm-5">
+									<table class="table table-bordered">
+										<tr>
+											<td>Cliente</td>
+											<td>UNION DE CERVECERIAS PERUANAS BACKU</td>
+										</tr>
+										<tr>
+											<td>Planta</td>
+											<td>Loc Ate</td>
+										</tr>
+										<tr>
+											<td>Marca</td>
+											<td>Guarana Zero</td>
+										</tr>
+
+										<tr>
+											<td>Descripción</td>
+											<td>Guarana Zero 500ml Pet15 Promo</td>
+										</tr>
+
+										<tr>
+											<td>Sector</td>
+											<td>Preforma</td>
+										</tr>
+
+										<tr>
+											<td>Gr</td>
+											<td>17.7</td>
+										</tr>
+
+
+										<tr>
+											<td>Tipo</td>
+											<td>1881</td>
+										</tr>
+
+
+										<tr>
+											<td>Color</td>
+											<td>Cristal</td>
+										</tr>
+
+										<tr>
+											<td>ml</td>
+											<td>0</td>
+										</tr>
+
+
+										<tr>
+											<td>%Rcd</td>
+											<td>10</td>
+										</tr>
+
+
+										<tr>
+											<td>CP</td>
+											<td>CP</td>
+										</tr>
+
+
+										<tr>
+											<td>Caja</td>
+											<td>M</td>
+										</tr>
+
+
+										<tr>
+											<td>Resina</td>
+											<td>CSD</td>
+										</tr>
+
+
+
+
+									</table>
+
+
+								</div>
+
+
+
+
+
+
+								<div class="col-sm-22">
+
+									<button class="btn btn-primary btn3d btn-lg btn-block">
+VOLVER
+									</button>
+
+									</br>
+									</br> Configuración Identificación
+									<table class="table table-bordered">
+										<tr>
+											<td>Descripción</td>
+											<td>Guarana Zero 500ml Pet15 Promo</td>
+
+
+										</tr>
+										<tr>
+											<td>Observación</td>
+											<td>Linea 7</td>
+
+
+										</tr>
+
+
+
+
+
+									</table>
+
+									</br>
+									</br>
+
+									<table class="table table-bordered">
+										<tr>
+											<td>Tipo Unidad</td>
+											<td>Paquetes</td>
+
+
+										</tr>
+										<tr>
+											<td>Cantidad por unidad</td>
+											<td>15</td>
+
+
+										</tr>
+
+
+
+
+
+									</table>
+
+									</br>
+									</br>
+
+
+									<div class="col-md-12" style="text-align: center">
+										<!-- Indicates a successful or positive action -->
+										<button type="button" class="btn btn-success btn3d btn-lg btn-block">
+											<i class="fa fa-check"></i> GUARDAR
+										</button>
+</br>
+										<button aria-label="Close" type="button"
+											class="btn btn-danger btn3d btn-lg btn-block">
+											<span aria-hidden="true">&times;</span>CANCELAR
+										</button>
+									</div>
+
+
+
+
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+
+
+
+					</div>
+					<div class="card-footer small text-muted"></div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+
+
+
+</body>
+
+</html>

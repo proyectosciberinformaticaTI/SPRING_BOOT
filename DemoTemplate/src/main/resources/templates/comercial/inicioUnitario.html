@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+	lang="en">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+ <head th:replace="layout/layout :: head"></head>
+
+  <body id="page-top">
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div id="wrapper">	    
+	      <!-- Sidebar -->
+	    <ul th:replace="layout/layout :: menuLateral"></ul>
+	    
+    	<div id="content-wrapper">
+	        <div class="container-fluid">
+  				<!-- DataTables Example -->
+	        	<div class="card mb-3">
+		            <div class="card-header">
+		              <i class="fas fa-table"></i>
+		              Registrar Proyección-Individual</div>
+		            <div class="card-body">
+		              
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="form-group">
+
+										<label>Cliente</label> <select class="form-control">
+											<option>BACKUS</option>
+											<option></option>
+											<option></option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="form-group">
+											<label>Planta</label> <select class="form-control">
+											<option>ATE</option>
+											<option></option>
+											<option></option>
+										</select>
+									</div>
+								</div>
+							</div>
+		              </br></br></br></br>
+		              
+
+		                <a th:href="@{/comercial/listarProductosClientePlanta}"  id="button1id" name="button1id" class="btn btn-success" style="display:block; margin-bottom:5px">Cargar Productos del cliente</a>
+
+ 
+		              
+		              
+		            </div>
+		            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+		          </div>
+	        </div>
+	        <!-- /.container-fluid -->
+	      </div>
+	      <!-- /.content-wrapper -->
+	    </div>
+	    <!-- /#wrapper -->
+    <footer th:replace="layout/layout :: footer"></footer>
+  </body>
+
+</html>

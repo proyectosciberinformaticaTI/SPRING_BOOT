@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head th:replace="layout/layout :: head"></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body id="page-top">
+	<header th:replace="layout/layout :: header"></header>
+
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<ul th:replace="layout/layout :: menuLateral"></ul>
+
+
+
+			<div id="content-wrapper">
+				<div class="container-fluid">
+					<!-- DataTables Example -->
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-table"></i> Registrar Proyección - Individual
+						</div>
+						<div class="card-body">
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="form-group">
+
+										<label>Cliente </label> <select class="form-control">
+											<option>BACKUS</option>
+											<option></option>
+											<option></option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="form-group">
+											<label>Número de Meses </label> <select class="form-control">
+											<option>4</option>
+											<option></option>
+											<option></option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+					
+						
+						<div class="card-body">
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="form-group">
+
+										<label>Planta </label> <select class="form-control">
+											<option>ATE</option>
+											<option></option>
+											<option></option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="form-group">
+											<label>Periodo </label> <select class="form-control">
+											<option>Meses del Año Anterior</option>
+											<option></option>
+											<option></option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+						</div>
+							<center>
+						  <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" th:href="@{/comercial/listarProductosClientePlantaHistorico}">Cargar Historicos</a>
+                                </div>
+                                
+                                </center>
+                                
+                                
+                                </br></br>
+                               
+						<div class="card-footer small text-muted">
+						
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+
+
+		<!-- /.content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>
